@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
-#define WIFISSID "noot noot"
-#define WIFIPASSWORD "12345678"
+#define WIFISSID "mywifi"
+#define WIFIPASSWORD "1234567890"
 
 bool isConnected = false;
 
