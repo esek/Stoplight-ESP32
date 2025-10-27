@@ -3,14 +3,21 @@
 
 #define WIFISSID "Esek-HK"
 #define WIFIPASSWORD "jag lovar att bete mig"
-
-int numnetworks;
+u_int8_t BSSID[8] = {0x08, 0x8e, 0x90, 0xd9, 0xe1, 0xe9, 0};
 
 void setup() {
     Serial.begin(9600);
-    WiFi.begin(WIFISSID, WIFIPASSWORD);
-    Serial.println("Start");
     
+    
+
+    Serial.println("Start ");
+    Serial.println("attempting to connect:");
+    WiFi.begin(WIFISSID, WIFIPASSWORD,6,BSSID,true);
+    while(WiFi.status() != WL_CONNECTED){
+        Serial.print(".");
+        delay(1000);
+    }
+    Serial.println("Connected");
 
 }
 
@@ -34,21 +41,7 @@ void loop() {
     }
     Serial.println("done! new scan soon\n\n");
     delay(10000);*/
-
     
-    
-    if(WiFi.status() == WL_CONNECTED){
-        Serial.println("Connected");
-        isConnected = true;
-    }
-    else if(WiFi.status() != WL_CONNECTED){
-        Serial.println("not connected");
-        isConnected = false;
-    }
-    else if(WiFi.status() != WL_CONNECTED){
-        Serial.println("not connected");
-        isConnected = false;
-    }
     
 
 }
