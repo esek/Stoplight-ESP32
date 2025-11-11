@@ -1,7 +1,16 @@
 #include <Arduino.h>
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
+
+#define WIFISSID "Esek-HK"
+#define WIFIPASSWORD "jag lovar att bete mig"
+
+const char *serverName = "https://skitaskita.esek.se/shit/stop";
+
+WiFiClientSecure client;
 
 #define HALL1 4
-#define HALL2 0
+#define HALL2 2
 
 #define REDLIGHT 12
 #define YELLOWLIGHT 14
@@ -22,6 +31,18 @@ void setup() {
   pinMode(YELLOWLIGHT, OUTPUT);
   pinMode(GREENLIGHT, OUTPUT);
   Serial.begin(9600);
+
+  Serial.println("Start ");
+  Serial.println("attempting to connect:");
+  WiFi.begin(WIFISSID, WIFIPASSWORD);
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println("Connected");
+
+
   
 }
 
